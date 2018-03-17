@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { BuildEvent, Builder, BuilderContext, Target } from '@angular-devkit/architect';
+import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs/Observable';
 export interface TslintBuilderOptions {
     tslintConfig?: string;
@@ -21,6 +21,6 @@ export interface TslintBuilderOptions {
 export declare class TslintBuilder implements Builder<TslintBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: Target<TslintBuilderOptions>): Observable<BuildEvent>;
+    run(target: BuilderConfiguration<TslintBuilderOptions>): Observable<BuildEvent>;
 }
 export default TslintBuilder;

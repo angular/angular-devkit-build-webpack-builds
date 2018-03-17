@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { BuildEvent, Builder, BuilderContext, Target } from '@angular-devkit/architect';
+import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs/Observable';
 export interface ExtractI18nBuilderOptions {
     browserTarget: string;
@@ -17,6 +17,6 @@ export interface ExtractI18nBuilderOptions {
 export declare class ExtractI18nBuilder implements Builder<ExtractI18nBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: Target<ExtractI18nBuilderOptions>): Observable<BuildEvent>;
+    run(target: BuilderConfiguration<ExtractI18nBuilderOptions>): Observable<BuildEvent>;
 }
 export default ExtractI18nBuilder;

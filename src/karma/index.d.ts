@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { BuildEvent, Builder, BuilderContext, Target } from '@angular-devkit/architect';
+import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs/Observable';
 import { AssetPattern, ExtraEntryPoint } from '../browser';
 export interface KarmaBuilderOptions {
@@ -33,7 +33,7 @@ export interface KarmaBuilderOptions {
 export declare class KarmaBuilder implements Builder<KarmaBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: Target<KarmaBuilderOptions>): Observable<BuildEvent>;
+    run(target: BuilderConfiguration<KarmaBuilderOptions>): Observable<BuildEvent>;
     private _buildWebpackConfig(projectRoot, options);
 }
 export default KarmaBuilder;

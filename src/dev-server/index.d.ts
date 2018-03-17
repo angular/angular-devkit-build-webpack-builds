@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { BuildEvent, Builder, BuilderContext, Target } from '@angular-devkit/architect';
+import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs/Observable';
 export interface DevServerBuilderOptions {
     browserTarget: string;
@@ -28,7 +28,7 @@ export interface DevServerBuilderOptions {
 export declare class DevServerBuilder implements Builder<DevServerBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: Target<DevServerBuilderOptions>): Observable<BuildEvent>;
+    run(target: BuilderConfiguration<DevServerBuilderOptions>): Observable<BuildEvent>;
     private _buildServerConfig(root, options, browserOptions);
     private _addLiveReload(options, browserOptions, webpackConfig, clientAddress);
     private _addSslConfig(root, options, config);

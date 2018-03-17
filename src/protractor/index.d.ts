@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { BuildEvent, Builder, BuilderContext, Target } from '@angular-devkit/architect';
+import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs/Observable';
 export interface ProtractorBuilderOptions {
     protractorConfig: string;
@@ -21,7 +21,7 @@ export interface ProtractorBuilderOptions {
 export declare class ProtractorBuilder implements Builder<ProtractorBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: Target<ProtractorBuilderOptions>): Observable<BuildEvent>;
+    run(target: BuilderConfiguration<ProtractorBuilderOptions>): Observable<BuildEvent>;
     private _startDevServer(options);
     private _updateWebdriver(root);
     private _runProtractor(root, options);
