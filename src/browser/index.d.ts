@@ -69,6 +69,7 @@ export interface ExtraEntryPoint {
     lazy: boolean;
 }
 export interface WebpackConfigOptions {
+    root: string;
     projectRoot: string;
     buildOptions: BrowserBuilderOptions;
     appConfig: BrowserBuilderOptions;
@@ -78,8 +79,8 @@ export interface WebpackConfigOptions {
 export declare class BrowserBuilder implements Builder<BrowserBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: BuilderConfiguration<BrowserBuilderOptions>): Observable<BuildEvent>;
-    buildWebpackConfig(root: Path, options: BrowserBuilderOptions): any;
+    run(builderConfig: BuilderConfiguration<BrowserBuilderOptions>): Observable<BuildEvent>;
+    buildWebpackConfig(root: Path, projectRoot: Path, options: BrowserBuilderOptions): any;
     private _deleteOutputDir(root, outputPath);
 }
 export default BrowserBuilder;

@@ -17,6 +17,6 @@ export interface ExtractI18nBuilderOptions {
 export declare class ExtractI18nBuilder implements Builder<ExtractI18nBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: BuilderConfiguration<ExtractI18nBuilderOptions>): Observable<BuildEvent>;
+    run(builderConfig: BuilderConfiguration<ExtractI18nBuilderOptions>): Observable<BuildEvent>;
 }
 export default ExtractI18nBuilder;

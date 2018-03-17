@@ -28,8 +28,8 @@ export interface DevServerBuilderOptions {
 export declare class DevServerBuilder implements Builder<DevServerBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: BuilderConfiguration<DevServerBuilderOptions>): Observable<BuildEvent>;
-    private _buildServerConfig(root, options, browserOptions);
+    run(builderConfig: BuilderConfiguration<DevServerBuilderOptions>): Observable<BuildEvent>;
+    private _buildServerConfig(root, projectRoot, options, browserOptions);
     private _addLiveReload(options, browserOptions, webpackConfig, clientAddress);
     private _addSslConfig(root, options, config);
     private _addProxyConfig(root, options, config);

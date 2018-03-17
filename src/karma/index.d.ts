@@ -33,7 +33,7 @@ export interface KarmaBuilderOptions {
 export declare class KarmaBuilder implements Builder<KarmaBuilderOptions> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(target: BuilderConfiguration<KarmaBuilderOptions>): Observable<BuildEvent>;
-    private _buildWebpackConfig(projectRoot, options);
+    run(builderConfig: BuilderConfiguration<KarmaBuilderOptions>): Observable<BuildEvent>;
+    private _buildWebpackConfig(root, projectRoot, options);
 }
 export default KarmaBuilder;
