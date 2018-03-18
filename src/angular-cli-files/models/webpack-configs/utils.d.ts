@@ -34,6 +34,6 @@ export declare function getOutputHashFormat(option: string, length?: number): Ha
 export interface AssetPattern {
     glob: string;
     input?: string;
-    output?: string;
-    allowOutsideOutDir?: boolean;
+    output: string;
+    allowOutsideOutDir: boolean;
 }

@@ -7,6 +7,7 @@ import { WebpackConfigOptions, WebpackTestOptions } from '../build-options';
  *
  */
 export declare function getTestConfig(wco: WebpackConfigOptions<WebpackTestOptions>): {
+    mode: string;
     resolve: {
         mainFields: string[];
     };
