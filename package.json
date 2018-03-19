@@ -6,7 +6,7 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/build-optimizer": "github:angular/angular-devkit-build-optimizer-builds#9fa382c",
+    "@angular-devkit/build-optimizer": "github:angular/angular-devkit-build-optimizer-builds#5d0129a",
     "@ngtools/webpack": "6.0.0-beta.6",
     "autoprefixer": "^7.2.3",
     "cache-loader": "^1.2.2",
@@ -55,8 +55,8 @@
     "webpack-subresource-integrity": "^1.0.3"
   },
   "peerDependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#9fa382c",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#9fa382c"
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#5d0129a",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#5d0129a"
   },
   "keywords": [
     "angular",
