@@ -6,6 +6,7 @@ import { WebpackConfigOptions } from '../build-options';
 + * require('webpack-sources')
 + */
 export declare function getBrowserConfig(wco: WebpackConfigOptions): {
+    devtool: string | boolean;
     resolve: {
         mainFields: string[];
     };
