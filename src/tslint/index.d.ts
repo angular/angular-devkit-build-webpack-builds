@@ -9,7 +9,7 @@ import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angu
 import { Observable } from 'rxjs/Observable';
 export interface TslintBuilderOptions {
     tslintConfig?: string;
-    tsConfig?: string;
+    tsConfig?: string | string[];
     fix: boolean;
     typeCheck: boolean;
     force: boolean;
