@@ -20,7 +20,6 @@ export interface BrowserBuilderOptions {
     verbose: boolean;
     progress: boolean;
     extractCss: boolean;
-    bundleDependencies: 'none' | 'all';
     watch: boolean;
     outputHashing: 'none' | 'all' | 'media' | 'bundles';
     deleteOutputPath: boolean;
@@ -54,7 +53,6 @@ export interface BrowserBuilderOptions {
     stylePreprocessorOptions: {
         includePaths: string[];
     };
-    platform: 'browser' | 'server';
     environment?: string;
 }
 export interface AssetPattern {
