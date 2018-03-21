@@ -45,7 +45,7 @@ export interface BrowserBuilderOptions {
     poll?: number;
     sourceMap: boolean;
     evalSourceMap: boolean;
-    optimizationLevel: number;
+    optimization: boolean;
     i18nLocale?: string;
     i18nMissingTranslation?: string;
     assets: AssetPattern[];

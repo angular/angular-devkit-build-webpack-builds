@@ -1,5 +1,5 @@
 export interface BuildOptions {
-    optimizationLevel: number;
+    optimization: boolean;
     environment?: string;
     outputPath: string;
     aot?: boolean;
