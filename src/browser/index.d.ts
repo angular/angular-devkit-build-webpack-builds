@@ -53,7 +53,10 @@ export interface BrowserBuilderOptions {
     stylePreprocessorOptions: {
         includePaths: string[];
     };
-    environment?: string;
+    fileReplacements: {
+        from: string;
+        to: string;
+    }[];
 }
 export interface AssetPattern {
     glob: string;
@@ -79,6 +82,6 @@ export declare class BrowserBuilder implements Builder<BrowserBuilderOptions> {
     constructor(context: BuilderContext);
     run(builderConfig: BuilderConfiguration<BrowserBuilderOptions>): Observable<BuildEvent>;
     buildWebpackConfig(root: Path, projectRoot: Path, options: BrowserBuilderOptions): any;
-    private _deleteOutputDir(root, outputPath);
+    private _deleteOutputDir(root, outputPath, host);
 }
 export default BrowserBuilder;
