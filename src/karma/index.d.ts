@@ -28,7 +28,10 @@ export interface KarmaBuilderOptions {
     stylePreprocessorOptions: {
         includePaths: string[];
     };
-    environment?: string;
+    fileReplacements: {
+        from: string;
+        to: string;
+    }[];
 }
 export declare class KarmaBuilder implements Builder<KarmaBuilderOptions> {
     context: BuilderContext;
