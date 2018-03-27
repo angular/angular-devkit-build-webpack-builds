@@ -9,6 +9,7 @@ import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angu
 import { Path } from '@angular-devkit/core';
 import { Observable } from 'rxjs/Observable';
 import * as ts from 'typescript';
+import { Budget } from '../angular-cli-files/utilities/bundle-calculator';
 export interface BrowserBuilderOptions {
     outputPath: string;
     index: string;
@@ -34,6 +35,7 @@ export interface BrowserBuilderOptions {
     forkTypeChecker: boolean;
     statsJson: boolean;
     lazyModules: string[];
+    budgets: Budget[];
     polyfills?: string;
     baseHref?: string;
     deployUrl?: string;
