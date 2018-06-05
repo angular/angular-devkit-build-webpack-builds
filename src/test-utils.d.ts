@@ -5,5 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-export * from './webpack';
-export * from './webpack-dev-server';
+import { TestProjectHost } from '@angular-devkit/architect/testing';
+export declare const basicHost: TestProjectHost;
+export declare const angularHost: TestProjectHost;
