@@ -6,8 +6,8 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#139a4fd",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#139a4fd",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#abc62ed",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#abc62ed",
     "rxjs": "^6.0.0"
   },
   "peerDependencies": {
@@ -16,13 +16,14 @@
   },
   "keywords": [
     "angular",
+    "Angular CLI",
     "devkit",
     "sdk",
     "Angular DevKit"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/angular/devkit.git"
+    "url": "https://github.com/angular/angular-cli.git"
   },
   "engines": {
     "node": ">= 8.9.0",
@@ -31,7 +32,7 @@
   "author": "Angular Authors",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/angular/devkit/issues"
+    "url": "https://github.com/angular/angular-cli/issues"
   },
-  "homepage": "https://github.com/angular/devkit"
+  "homepage": "https://github.com/angular/angular-cli"
 }
