@@ -6,8 +6,8 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#0efd002",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#0efd002",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#98c2747",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#98c2747",
     "rxjs": "6.2.2"
   },
   "peerDependencies": {
