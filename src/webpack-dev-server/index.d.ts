@@ -11,11 +11,16 @@ import * as webpack from 'webpack';
 import * as WebpackDevServer from 'webpack-dev-server';
 import { LoggingCallback } from '../webpack';
 import { WebpackDevServerBuilderSchema } from './schema';
+export interface DevServerResult {
+    port: number;
+    family: string;
+    address: string;
+}
 export declare class WebpackDevServerBuilder implements Builder<WebpackDevServerBuilderSchema> {
     context: BuilderContext;
     constructor(context: BuilderContext);
-    run(builderConfig: BuilderConfiguration<WebpackDevServerBuilderSchema>): Observable<BuildEvent>;
+    run(builderConfig: BuilderConfiguration<WebpackDevServerBuilderSchema>): Observable<BuildEvent<DevServerResult>>;
     loadWebpackConfig(webpackConfigPath: string): Observable<webpack.Configuration>;
-    runWebpackDevServer(webpackConfig: webpack.Configuration, devServerCfg?: WebpackDevServer.Configuration, loggingCb?: LoggingCallback): Observable<BuildEvent>;
+    runWebpackDevServer(webpackConfig: webpack.Configuration, devServerCfg?: WebpackDevServer.Configuration, loggingCb?: LoggingCallback): Observable<BuildEvent<DevServerResult>>;
 }
 export default WebpackDevServerBuilder;
