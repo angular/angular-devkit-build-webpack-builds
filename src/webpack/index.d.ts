@@ -19,6 +19,7 @@ export declare class WebpackBuilder implements Builder<WebpackBuilderSchema> {
     constructor(context: BuilderContext);
     run(builderConfig: BuilderConfiguration<WebpackBuilderSchema>): Observable<BuildEvent>;
     loadWebpackConfig(webpackConfigPath: string): Observable<webpack.Configuration>;
+    protected createWebpackCompiler(config: webpack.Configuration): webpack.Compiler;
     runWebpack(config: webpack.Configuration, loggingCb?: LoggingCallback): Observable<BuildEvent>;
 }
 export default WebpackBuilder;
