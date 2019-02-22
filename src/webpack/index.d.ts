@@ -9,7 +9,7 @@ import { BuildEvent, Builder, BuilderConfiguration, BuilderContext } from '@angu
 import { logging } from '@angular-devkit/core';
 import { Observable } from 'rxjs';
 import * as webpack from 'webpack';
-import { WebpackBuilderSchema } from './schema';
+import { Schema as WebpackBuilderSchema } from './schema';
 export interface LoggingCallback {
     (stats: webpack.Stats, config: webpack.Configuration, logger: logging.Logger): void;
 }
