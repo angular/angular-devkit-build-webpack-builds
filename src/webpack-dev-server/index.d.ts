@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import * as webpack from 'webpack';
 import * as WebpackDevServer from 'webpack-dev-server';
 import { LoggingCallback } from '../webpack';
-import { WebpackDevServerBuilderSchema } from './schema';
+import { Schema as WebpackDevServerBuilderSchema } from './schema';
 export interface DevServerResult {
     port: number;
     family: string;
