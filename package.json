@@ -6,8 +6,8 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#fd5cb7a",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#fd5cb7a",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#324d9f2",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#324d9f2",
     "rxjs": "6.4.0",
     "webpack-merge": "4.2.1"
   },
