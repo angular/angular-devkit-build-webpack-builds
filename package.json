@@ -6,8 +6,8 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#efac7b6",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#efac7b6",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#9ef4a05",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#9ef4a05",
     "rxjs": "6.4.0",
     "webpack-merge": "4.2.1"
   },
@@ -27,8 +27,8 @@
     "url": "https://github.com/angular/angular-cli.git"
   },
   "engines": {
-    "node": ">= 8.9.0",
-    "npm": ">= 5.5.1"
+    "node": ">= 10.9.0",
+    "npm": ">= 6.2.0"
   },
   "author": "Angular Authors",
   "license": "MIT",
