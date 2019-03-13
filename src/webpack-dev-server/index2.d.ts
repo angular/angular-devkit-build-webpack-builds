@@ -12,7 +12,7 @@ import * as webpack from 'webpack';
 import * as WebpackDevServer from 'webpack-dev-server';
 import { WebpackFactory, WebpackLoggingCallback } from '../webpack/index2';
 import { Schema as WebpackDevServerBuilderSchema } from './schema';
-export declare type DevServerBuildResult = BuilderOutput & {
+export declare type DevServerBuildOutput = BuilderOutput & {
     port: number;
     family: string;
     address: string;
