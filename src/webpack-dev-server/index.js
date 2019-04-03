@@ -7,13 +7,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-const index2_1 = require("@angular-devkit/architect/src/index2");
+const architect_1 = require("@angular-devkit/architect");
 const core_1 = require("@angular-devkit/core");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
-const architect_1 = require("../plugins/architect");
+const architect_2 = require("../plugins/architect");
 const utils_1 = require("../utils");
 const webpackMerge = require('webpack-merge');
 function runWebpackDevServer(config, context, options = {}) {
@@ -22,7 +22,7 @@ function runWebpackDevServer(config, context, options = {}) {
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     config = webpackMerge(config, {
         plugins: [
-            new architect_1.ArchitectPlugin(context),
+            new architect_2.ArchitectPlugin(context),
         ],
     });
     const devServerConfig = options.devServerConfig || config.devServer || {};
@@ -58,7 +58,7 @@ function runWebpackDevServer(config, context, options = {}) {
     })));
 }
 exports.runWebpackDevServer = runWebpackDevServer;
-exports.default = index2_1.createBuilder((options, context) => {
+exports.default = architect_1.createBuilder((options, context) => {
     const configPath = core_1.resolve(core_1.normalize(context.workspaceRoot), core_1.normalize(options.webpackConfig));
     return rxjs_1.from(Promise.resolve().then(() => require(core_1.getSystemPath(configPath)))).pipe(operators_1.switchMap((config) => runWebpackDevServer(config, context)));
 });
