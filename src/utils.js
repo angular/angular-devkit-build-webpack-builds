@@ -7,29 +7,33 @@
  * found in the LICENSE file at https://angular.io/license
  */
 Object.defineProperty(exports, "__esModule", { value: true });
+const path = require("path");
 function getEmittedFiles(compilation) {
-    const getExtension = (file) => file.split('.').reverse()[0];
     const files = [];
+    // entrypoints might have multiple outputs
+    // such as runtime.js
+    for (const [name, entrypoint] of compilation.entrypoints) {
+        const entryFiles = (entrypoint && entrypoint.getFiles()) || [];
+        for (const file of entryFiles) {
+            files.push({ name, file, extension: path.extname(file), initial: true });
+        }
+    }
+    // adds all chunks to the list of emitted files such as lazy loaded modules
     for (const chunk of Object.values(compilation.chunks)) {
-        const entry = {
-            name: chunk.name,
-            initial: chunk.isOnlyInitial(),
-        };
         for (const file of chunk.files) {
-            files.push(Object.assign({}, entry, { file, extension: getExtension(file) }));
+            files.push({
+                name: chunk.name,
+                file,
+                extension: path.extname(file),
+                initial: chunk.isOnlyInitial(),
+            });
         }
     }
+    // other all files
     for (const file of Object.keys(compilation.assets)) {
-        if (files.some(e => e.file === file)) {
-            // skip as this already exists
-            continue;
-        }
-        files.push({
-            file,
-            extension: getExtension(file),
-            initial: false,
-        });
+        files.push({ file, extension: path.extname(file), initial: false });
     }
-    return files;
+    // dedupe
+    return files.filter(({ file }, index) => files.findIndex(f => f.file === file) === index);
 }
 exports.getEmittedFiles = getEmittedFiles;
