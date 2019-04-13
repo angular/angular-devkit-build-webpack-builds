@@ -37,7 +37,11 @@ function runWebpackDevServer(config, context, options = {}) {
         webpackCompiler.hooks.done.tap('build-webpack', (stats) => {
             // Log stats.
             log(stats, config);
-            obs.next(Object.assign({}, result, { emittedFiles: utils_1.getEmittedFiles(stats.compilation), success: !stats.hasErrors() }));
+            obs.next({
+                ...result,
+                emittedFiles: utils_1.getEmittedFiles(stats.compilation),
+                success: !stats.hasErrors(),
+            });
         });
         server.listen(devServerConfig.port === undefined ? 8080 : devServerConfig.port, devServerConfig.host === undefined ? 'localhost' : devServerConfig.host, function (err) {
             if (err) {
