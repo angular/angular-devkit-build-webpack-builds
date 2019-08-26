@@ -31,7 +31,7 @@ function getEmittedFiles(compilation) {
     }
     // other all files
     for (const file of Object.keys(compilation.assets)) {
-        files.push({ file, extension: path.extname(file), initial: false, asset: true });
+        files.push({ file, extension: path.extname(file), initial: false });
     }
     // dedupe
     return files.filter(({ file, name }, index) => files.findIndex(f => f.file === file && (!name || name === f.name)) === index);

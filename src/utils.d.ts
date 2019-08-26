@@ -10,7 +10,6 @@ export interface EmittedFiles {
     name?: string;
     file: string;
     initial: boolean;
-    asset?: boolean;
     extension: string;
 }
 export declare function getEmittedFiles(compilation: webpack.compilation.Compilation): EmittedFiles[];
