@@ -7,6 +7,7 @@
  */
 import * as webpack from 'webpack';
 export interface EmittedFiles {
+    id?: string;
     name?: string;
     file: string;
     initial: boolean;
