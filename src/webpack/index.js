@@ -33,6 +33,7 @@ function runWebpack(config, context, options = {}) {
             log(stats, config);
             obs.next({
                 success: !stats.hasErrors(),
+                webpackStats: stats.toJson(),
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
             });
             if (!config.watch) {

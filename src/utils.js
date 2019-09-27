@@ -10,18 +10,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const path = require("path");
 function getEmittedFiles(compilation) {
     const files = [];
-    // entrypoints might have multiple outputs
-    // such as runtime.js
-    for (const [name, entrypoint] of compilation.entrypoints) {
-        const entryFiles = (entrypoint && entrypoint.getFiles()) || [];
-        for (const file of entryFiles) {
-            files.push({ name, file, extension: path.extname(file), initial: true });
-        }
-    }
     // adds all chunks to the list of emitted files such as lazy loaded modules
-    for (const chunk of Object.values(compilation.chunks)) {
+    for (const chunk of compilation.chunks) {
         for (const file of chunk.files) {
             files.push({
+                id: chunk.id.toString(),
                 name: chunk.name,
                 file,
                 extension: path.extname(file),
