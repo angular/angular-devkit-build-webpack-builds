@@ -12,11 +12,18 @@ const core_1 = require("@angular-devkit/core");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const webpack = require("webpack");
+const architect_2 = require("../plugins/architect");
 const utils_1 = require("../utils");
+const webpackMerge = require('webpack-merge');
 function runWebpack(config, context, options = {}) {
     const createWebpack = options.webpackFactory || (config => rxjs_1.of(webpack(config)));
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
+    config = webpackMerge(config, {
+        plugins: [
+            new architect_2.ArchitectPlugin(context),
+        ],
+    });
     return createWebpack(config).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
         const callback = (err, stats) => {
             if (err) {
