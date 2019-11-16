@@ -15,7 +15,20 @@ const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 const utils_1 = require("../utils");
 function runWebpackDevServer(config, context, options = {}) {
-    const createWebpack = options.webpackFactory || (config => rxjs_1.of(webpack(config)));
+    const createWebpack = (c) => {
+        if (options.webpackFactory) {
+            const result = options.webpackFactory(c);
+            if (rxjs_1.isObservable(result)) {
+                return result;
+            }
+            else {
+                return rxjs_1.of(result);
+            }
+        }
+        else {
+            return rxjs_1.of(webpack(c));
+        }
+    };
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     const devServerConfig = options.devServerConfig || config.devServer || {};
