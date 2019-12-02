@@ -29,12 +29,6 @@ function runWebpackDevServer(config, context, options = {}) {
             return rxjs_1.of(webpack(c));
         }
     };
-    const createWebpackDevServer = (webpack, config) => {
-        if (options.webpackDevServerFactory) {
-            return new options.webpackDevServerFactory(webpack, config);
-        }
-        return new WebpackDevServer(webpack, config);
-    };
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     const devServerConfig = options.devServerConfig || config.devServer || {};
@@ -44,7 +38,7 @@ function runWebpackDevServer(config, context, options = {}) {
     // Disable stats reporting by the devserver, we have our own logger.
     devServerConfig.stats = false;
     return createWebpack(config).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
-        const server = createWebpackDevServer(webpackCompiler, devServerConfig);
+        const server = new WebpackDevServer(webpackCompiler, devServerConfig);
         let result;
         webpackCompiler.hooks.done.tap('build-webpack', (stats) => {
             // Log stats.
