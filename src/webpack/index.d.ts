@@ -16,7 +16,7 @@ export interface WebpackLoggingCallback {
     (stats: webpack.Stats, config: webpack.Configuration): void;
 }
 export interface WebpackFactory {
-    (config: webpack.Configuration): Observable<webpack.Compiler>;
+    (config: webpack.Configuration): Observable<webpack.Compiler> | webpack.Compiler;
 }
 export declare type BuildResult = BuilderOutput & {
     emittedFiles?: EmittedFiles[];
