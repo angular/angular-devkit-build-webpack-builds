@@ -15,7 +15,26 @@ const webpack = require("webpack");
 const WebpackDevServer = require("webpack-dev-server");
 const utils_1 = require("../utils");
 function runWebpackDevServer(config, context, options = {}) {
-    const createWebpack = options.webpackFactory || (config => rxjs_1.of(webpack(config)));
+    const createWebpack = (c) => {
+        if (options.webpackFactory) {
+            const result = options.webpackFactory(c);
+            if (rxjs_1.isObservable(result)) {
+                return result;
+            }
+            else {
+                return rxjs_1.of(result);
+            }
+        }
+        else {
+            return rxjs_1.of(webpack(c));
+        }
+    };
+    const createWebpackDevServer = (webpack, config) => {
+        if (options.webpackDevServerFactory) {
+            return new options.webpackDevServerFactory(webpack, config);
+        }
+        return new WebpackDevServer(webpack, config);
+    };
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     const devServerConfig = options.devServerConfig || config.devServer || {};
@@ -25,7 +44,7 @@ function runWebpackDevServer(config, context, options = {}) {
     // Disable stats reporting by the devserver, we have our own logger.
     devServerConfig.stats = false;
     return createWebpack(config).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
-        const server = new WebpackDevServer(webpackCompiler, devServerConfig);
+        const server = createWebpackDevServer(webpackCompiler, devServerConfig);
         let result;
         webpackCompiler.hooks.done.tap('build-webpack', (stats) => {
             // Log stats.
