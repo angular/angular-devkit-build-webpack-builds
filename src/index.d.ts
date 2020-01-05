@@ -7,4 +7,5 @@
  */
 export * from './webpack';
 export * from './webpack-dev-server';
+export * from './plugins/architect';
 export { EmittedFiles } from './utils';
