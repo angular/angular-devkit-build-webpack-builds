@@ -36,6 +36,9 @@ function runWebpack(config, context, options = {}) {
             if (err) {
                 return obs.error(err);
             }
+            if (!stats) {
+                return;
+            }
             // Log stats.
             log(stats, config);
             obs.next({
