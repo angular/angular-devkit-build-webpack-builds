@@ -31,7 +31,7 @@ function runWebpack(config, context, options = {}) {
     };
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
-    return createWebpack(config).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
         const callback = (err, stats) => {
             if (err) {
                 return obs.error(err);
