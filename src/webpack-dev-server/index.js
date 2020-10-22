@@ -9,7 +9,7 @@ exports.runWebpackDevServer = void 0;
  * found in the LICENSE file at https://angular.io/license
  */
 const architect_1 = require("@angular-devkit/architect");
-const core_1 = require("@angular-devkit/core");
+const path_1 = require("path");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const webpack = require("webpack");
@@ -76,6 +76,6 @@ function runWebpackDevServer(config, context, options = {}) {
 }
 exports.runWebpackDevServer = runWebpackDevServer;
 exports.default = architect_1.createBuilder((options, context) => {
-    const configPath = core_1.resolve(core_1.normalize(context.workspaceRoot), core_1.normalize(options.webpackConfig));
-    return rxjs_1.from(Promise.resolve().then(() => require(core_1.getSystemPath(configPath)))).pipe(operators_1.switchMap((config) => runWebpackDevServer(config, context)));
+    const configPath = path_1.resolve(context.workspaceRoot, options.webpackConfig);
+    return rxjs_1.from(Promise.resolve().then(() => require(configPath))).pipe(operators_1.switchMap((config) => runWebpackDevServer(config, context)));
 });

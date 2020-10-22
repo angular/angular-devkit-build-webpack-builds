@@ -9,7 +9,7 @@ exports.runWebpack = void 0;
  * found in the LICENSE file at https://angular.io/license
  */
 const architect_1 = require("@angular-devkit/architect");
-const core_1 = require("@angular-devkit/core");
+const path_1 = require("path");
 const rxjs_1 = require("rxjs");
 const operators_1 = require("rxjs/operators");
 const webpack = require("webpack");
@@ -32,6 +32,11 @@ function runWebpack(config, context, options = {}) {
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+        // Webpack 5 has a compiler level close function
+        // The close function will crash if caching is disabled
+        const compilerClose = webpackCompiler.options.cache !== false
+            ? webpackCompiler.close
+            : undefined;
         const callback = (err, stats) => {
             if (err) {
                 return obs.error(err);
@@ -47,7 +52,12 @@ function runWebpack(config, context, options = {}) {
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
             });
             if (!config.watch) {
-                obs.complete();
+                if (compilerClose) {
+                    compilerClose(() => obs.complete());
+                }
+                else {
+                    obs.complete();
+                }
             }
         };
         try {
@@ -55,7 +65,10 @@ function runWebpack(config, context, options = {}) {
                 const watchOptions = config.watchOptions || {};
                 const watching = webpackCompiler.watch(watchOptions, callback);
                 // Teardown logic. Close the watcher when unsubscribed from.
-                return () => watching.close(() => { });
+                return () => {
+                    watching.close(() => { });
+                    compilerClose === null || compilerClose === void 0 ? void 0 : compilerClose(() => { });
+                };
             }
             else {
                 webpackCompiler.run(callback);
@@ -71,6 +84,6 @@ function runWebpack(config, context, options = {}) {
 }
 exports.runWebpack = runWebpack;
 exports.default = architect_1.createBuilder((options, context) => {
-    const configPath = core_1.resolve(core_1.normalize(context.workspaceRoot), core_1.normalize(options.webpackConfig));
-    return rxjs_1.from(Promise.resolve().then(() => require(core_1.getSystemPath(configPath)))).pipe(operators_1.switchMap((config) => runWebpack(config, context)));
+    const configPath = path_1.resolve(context.workspaceRoot, options.webpackConfig);
+    return rxjs_1.from(Promise.resolve().then(() => require(configPath))).pipe(operators_1.switchMap((config) => runWebpack(config, context)));
 });
