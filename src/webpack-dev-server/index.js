@@ -44,7 +44,7 @@ function runWebpackDevServer(config, context, options = {}) {
     }
     // Disable stats reporting by the devserver, we have our own logger.
     devServerConfig.stats = false;
-    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+    return createWebpack(config).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
         const server = createWebpackDevServer(webpackCompiler, devServerConfig);
         let result;
         webpackCompiler.hooks.done.tap('build-webpack', (stats) => {

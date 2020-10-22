@@ -1,15 +1,15 @@
 {
   "name": "@angular-devkit/build-webpack",
-  "version": "0.1100.0-next.7+75.27234ef",
+  "version": "0.1002.0+2.a5bbcd5",
   "description": "Webpack Builder for Architect",
   "experimental": true,
   "main": "src/index.js",
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#27234ef75",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#27234ef75",
-    "rxjs": "6.6.3"
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#a5bbcd56b",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#a5bbcd56b",
+    "rxjs": "6.6.2"
   },
   "peerDependencies": {
     "webpack": "^4.6.0",
@@ -39,8 +39,7 @@
   "homepage": "https://github.com/angular/angular-cli",
   "husky": {
     "hooks": {
-      "commit-msg": "yarn -s ng-dev commit-message pre-commit-validate --file-env-variable HUSKY_GIT_PARAMS",
-      "prepare-commit-msg": "yarn -s ng-dev commit-message restore-commit-message-draft --file-env-variable HUSKY_GIT_PARAMS"
+      "pre-push": "node ./bin/devkit-admin hooks/pre-push"
     }
   }
 }
