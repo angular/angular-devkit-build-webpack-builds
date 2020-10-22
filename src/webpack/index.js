@@ -32,6 +32,11 @@ function runWebpack(config, context, options = {}) {
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+        // Webpack 5 has a compiler level close function
+        // The close function will crash if caching is disabled
+        const compilerClose = webpackCompiler.options.cache !== false
+            ? webpackCompiler.close
+            : undefined;
         const callback = (err, stats) => {
             if (err) {
                 return obs.error(err);
@@ -47,7 +52,12 @@ function runWebpack(config, context, options = {}) {
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
             });
             if (!config.watch) {
-                obs.complete();
+                if (compilerClose) {
+                    compilerClose(() => obs.complete());
+                }
+                else {
+                    obs.complete();
+                }
             }
         };
         try {
@@ -55,7 +65,10 @@ function runWebpack(config, context, options = {}) {
                 const watchOptions = config.watchOptions || {};
                 const watching = webpackCompiler.watch(watchOptions, callback);
                 // Teardown logic. Close the watcher when unsubscribed from.
-                return () => watching.close(() => { });
+                return () => {
+                    watching.close(() => { });
+                    compilerClose === null || compilerClose === void 0 ? void 0 : compilerClose(() => { });
+                };
             }
             else {
                 webpackCompiler.run(callback);
