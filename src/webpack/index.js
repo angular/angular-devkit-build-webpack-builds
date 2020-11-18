@@ -32,11 +32,9 @@ function runWebpack(config, context, options = {}) {
     const log = options.logging
         || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+        var _a;
         // Webpack 5 has a compiler level close function
-        // The close function will crash if caching is disabled
-        const compilerClose = webpackCompiler.options.cache !== false
-            ? webpackCompiler.close
-            : undefined;
+        const compilerClose = (_a = webpackCompiler.close) === null || _a === void 0 ? void 0 : _a.bind(webpackCompiler);
         const callback = (err, stats) => {
             if (err) {
                 return obs.error(err);
