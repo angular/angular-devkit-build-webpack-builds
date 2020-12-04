@@ -25,6 +25,7 @@ export declare type BuildResult = BuilderOutput & {
 export declare function runWebpack(config: webpack.Configuration, context: BuilderContext, options?: {
     logging?: WebpackLoggingCallback;
     webpackFactory?: WebpackFactory;
+    shouldProvideStats?: boolean;
 }): Observable<BuildResult>;
 declare const _default: import("@angular-devkit/architect/src/internal").Builder<WebpackBuilderSchema>;
 export default _default;
