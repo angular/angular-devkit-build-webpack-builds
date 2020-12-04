@@ -15,7 +15,6 @@ const operators_1 = require("rxjs/operators");
 const webpack = require("webpack");
 const utils_1 = require("../utils");
 function runWebpack(config, context, options = {}) {
-    const { logging: log = (stats, config) => context.logger.info(stats.toString(config.stats)), shouldProvideStats = true, } = options;
     const createWebpack = (c) => {
         if (options.webpackFactory) {
             const result = options.webpackFactory(c);
@@ -30,6 +29,8 @@ function runWebpack(config, context, options = {}) {
             return rxjs_1.of(webpack(c));
         }
     };
+    const log = options.logging
+        || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
         var _a;
         // Webpack 5 has a compiler level close function
@@ -45,7 +46,7 @@ function runWebpack(config, context, options = {}) {
             log(stats, config);
             obs.next({
                 success: !stats.hasErrors(),
-                webpackStats: shouldProvideStats ? stats.toJson() : undefined,
+                webpackStats: stats.toJson(),
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
             });
             if (!config.watch) {
