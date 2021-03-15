@@ -21,6 +21,7 @@ export interface WebpackFactory {
 export declare type BuildResult = BuilderOutput & {
     emittedFiles?: EmittedFiles[];
     webpackStats?: webpack.Stats.ToJsonOutput;
+    outputPath: string;
 };
 export declare function runWebpack(config: webpack.Configuration, context: BuilderContext, options?: {
     logging?: WebpackLoggingCallback;

@@ -54,6 +54,7 @@ function runWebpackDevServer(config, context, options = {}) {
                 ...result,
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
                 success: !stats.hasErrors(),
+                outputPath: stats.compilation.outputOptions.path,
             });
         });
         server.listen(devServerConfig.port === undefined ? 8080 : devServerConfig.port, devServerConfig.host === undefined ? 'localhost' : devServerConfig.host, function (err) {

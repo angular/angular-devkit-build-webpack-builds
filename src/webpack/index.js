@@ -47,6 +47,7 @@ function runWebpack(config, context, options = {}) {
                 success: !stats.hasErrors(),
                 webpackStats: shouldProvideStats ? stats.toJson() : undefined,
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
+                outputPath: stats.compilation.outputOptions.path,
             });
             if (!config.watch) {
                 if (compilerClose) {
