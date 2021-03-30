@@ -7,9 +7,9 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#e82f46cfb",
-    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#e82f46cfb",
-    "rxjs": "6.6.6"
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#012700ace",
+    "@angular-devkit/core": "github:angular/angular-devkit-core-builds#012700ace",
+    "rxjs": "6.6.7"
   },
   "peerDependencies": {
     "webpack": "^4.6.0",
