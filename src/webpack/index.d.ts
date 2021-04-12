@@ -19,7 +19,7 @@ export interface WebpackFactory {
 }
 export declare type BuildResult = BuilderOutput & {
     emittedFiles?: EmittedFiles[];
-    webpackStats?: webpack.Stats.ToJsonOutput;
+    webpackStats?: webpack.StatsCompilation;
     outputPath: string;
 };
 export declare function runWebpack(config: webpack.Configuration, context: BuilderContext, options?: {
