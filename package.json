@@ -7,11 +7,11 @@
   "typings": "src/index.d.ts",
   "builders": "builders.json",
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#440f57943",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#d7bedb729",
     "rxjs": "6.6.7"
   },
   "peerDependencies": {
-    "webpack": "^4.6.0 || ^5.30.0",
+    "webpack": "^5.30.0",
     "webpack-dev-server": "^3.1.4"
   },
   "keywords": [
