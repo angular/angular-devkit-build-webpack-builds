@@ -30,7 +30,7 @@ function runWebpack(config, context, options = {}) {
             return rxjs_1.of(webpack(c));
         }
     };
-    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap((webpackCompiler) => new rxjs_1.Observable((obs) => {
         var _a;
         // Webpack 5 has a compiler level close function
         const compilerClose = (_a = webpackCompiler.close) === null || _a === void 0 ? void 0 : _a.bind(webpackCompiler);
@@ -74,7 +74,7 @@ function runWebpack(config, context, options = {}) {
         }
         catch (err) {
             if (err) {
-                context.logger.error(`\nAn error occurred during the build:\n${err && err.stack || err}`);
+                context.logger.error(`\nAn error occurred during the build:\n${(err && err.stack) || err}`);
             }
             throw err;
         }
