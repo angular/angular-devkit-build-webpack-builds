@@ -30,6 +30,6 @@ function getEmittedFiles(compilation) {
         files.push({ file, extension: path.extname(file), initial: false, asset: true });
     }
     // dedupe
-    return files.filter(({ file, name }, index) => files.findIndex(f => f.file === file && (!name || name === f.name)) === index);
+    return files.filter(({ file, name }, index) => files.findIndex((f) => f.file === file && (!name || name === f.name)) === index);
 }
 exports.getEmittedFiles = getEmittedFiles;

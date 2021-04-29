@@ -40,8 +40,7 @@ function runWebpackDevServer(config, context, options = {}) {
         // tslint:disable-next-line: no-any
         return new WebpackDevServer(webpack, config);
     };
-    const log = options.logging
-        || ((stats, config) => context.logger.info(stats.toString(config.stats)));
+    const log = options.logging || ((stats, config) => context.logger.info(stats.toString(config.stats)));
     // tslint:disable-next-line: no-any
     const devServerConfig = options.devServerConfig || config.devServer || {};
     if (devServerConfig.stats) {
@@ -49,7 +48,7 @@ function runWebpackDevServer(config, context, options = {}) {
     }
     // Disable stats reporting by the devserver, we have our own logger.
     devServerConfig.stats = false;
-    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap(webpackCompiler => new rxjs_1.Observable(obs => {
+    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap((webpackCompiler) => new rxjs_1.Observable((obs) => {
         const server = createWebpackDevServer(webpackCompiler, devServerConfig);
         let result;
         webpackCompiler.hooks.done.tap('build-webpack', (stats) => {
@@ -81,11 +80,11 @@ function runWebpackDevServer(config, context, options = {}) {
             }
         });
         // Teardown logic. Close the server when unsubscribed from.
-        return (() => {
+        return () => {
             var _a;
             server.close();
             (_a = webpackCompiler.close) === null || _a === void 0 ? void 0 : _a.call(webpackCompiler, () => { });
-        });
+        };
     })));
 }
 exports.runWebpackDevServer = runWebpackDevServer;
