@@ -33,15 +33,15 @@ function runWebpackDevServer(config, context, options = {}) {
     const createWebpackDevServer = (webpack, config) => {
         if (options.webpackDevServerFactory) {
             // webpack-dev-server types currently do not support Webpack 5
-            // tslint:disable-next-line: no-any
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return new options.webpackDevServerFactory(webpack, config);
         }
         // webpack-dev-server types currently do not support Webpack 5
-        // tslint:disable-next-line: no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         return new WebpackDevServer(webpack, config);
     };
     const log = options.logging || ((stats, config) => context.logger.info(stats.toString(config.stats)));
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const devServerConfig = options.devServerConfig || config.devServer || {};
     if (devServerConfig.stats) {
         config.stats = devServerConfig.stats;
