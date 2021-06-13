@@ -7,8 +7,8 @@
  */
 import { BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs';
-import * as webpack from 'webpack';
-import * as WebpackDevServer from 'webpack-dev-server';
+import webpack from 'webpack';
+import WebpackDevServer from 'webpack-dev-server';
 import { BuildResult, WebpackFactory, WebpackLoggingCallback } from '../webpack';
 import { Schema as WebpackDevServerBuilderSchema } from './schema';
 export declare type WebpackDevServerFactory = typeof WebpackDevServer;
