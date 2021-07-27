@@ -63,14 +63,20 @@ function runWebpack(config, context, options = {}) {
             // Log stats.
             log(stats, config);
             const statsOptions = typeof config.stats === 'boolean' ? undefined : config.stats;
-            obs.next({
+            const result = {
                 success: !stats.hasErrors(),
                 webpackStats: shouldProvideStats ? stats.toJson(statsOptions) : undefined,
                 emittedFiles: utils_1.getEmittedFiles(stats.compilation),
                 outputPath: stats.compilation.outputOptions.path,
-            });
-            if (!config.watch) {
-                webpackCompiler.close(() => obs.complete());
+            };
+            if (config.watch) {
+                obs.next(result);
+            }
+            else {
+                webpackCompiler.close(() => {
+                    obs.next(result);
+                    obs.complete();
+                });
             }
         };
         try {
