@@ -54,24 +54,15 @@ function runWebpackDevServer(config, context, options = {}) {
     };
     const createWebpackDevServer = (webpack, config) => {
         if (options.webpackDevServerFactory) {
-            // webpack-dev-server types currently do not support Webpack 5
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            return new options.webpackDevServerFactory(webpack, config);
+            return new options.webpackDevServerFactory(config, webpack);
         }
-        // webpack-dev-server types currently do not support Webpack 5
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        return new webpack_dev_server_1.default(webpack, config);
+        return new webpack_dev_server_1.default(config, webpack);
     };
     const log = options.logging || ((stats, config) => context.logger.info(stats.toString(config.stats)));
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const devServerConfig = options.devServerConfig || config.devServer || {};
-    if (devServerConfig.stats) {
-        config.stats = devServerConfig.stats;
-    }
-    // Disable stats reporting by the devserver, we have our own logger.
-    devServerConfig.stats = false;
     return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap((webpackCompiler) => new rxjs_1.Observable((obs) => {
-        const server = createWebpackDevServer(webpackCompiler, devServerConfig);
+        var _a;
+        const devServerConfig = options.devServerConfig || config.devServer || {};
+        (_a = devServerConfig.host) !== null && _a !== void 0 ? _a : (devServerConfig.host = 'localhost');
         let result;
         webpackCompiler.hooks.done.tap('build-webpack', (stats) => {
             // Log stats.
@@ -83,29 +74,24 @@ function runWebpackDevServer(config, context, options = {}) {
                 outputPath: stats.compilation.outputOptions.path,
             });
         });
-        server.listen(devServerConfig.port === undefined ? 8080 : devServerConfig.port, devServerConfig.host === undefined ? 'localhost' : devServerConfig.host, function (err) {
-            if (err) {
-                obs.error(err);
+        const devServer = createWebpackDevServer(webpackCompiler, devServerConfig);
+        devServer.startCallback(() => {
+            const address = devServer.server.address();
+            if (!address) {
+                obs.error(new Error(`Dev-server address info is not defined.`));
+                return;
             }
-            else {
-                const address = this.address();
-                if (!address) {
-                    obs.error(new Error(`Dev-server address info is not defined.`));
-                    return;
-                }
-                result = {
-                    success: true,
-                    port: typeof address === 'string' ? 0 : address.port,
-                    family: typeof address === 'string' ? '' : address.family,
-                    address: typeof address === 'string' ? address : address.address,
-                };
-            }
+            result = {
+                success: true,
+                port: typeof address === 'string' ? 0 : address.port,
+                family: typeof address === 'string' ? '' : address.family,
+                address: typeof address === 'string' ? address : address.address,
+            };
         });
         // Teardown logic. Close the server when unsubscribed from.
         return () => {
-            var _a;
-            server.close();
-            (_a = webpackCompiler.close) === null || _a === void 0 ? void 0 : _a.call(webpackCompiler, () => { });
+            devServer.stopCallback(() => { });
+            webpackCompiler.close(() => { });
         };
     })));
 }
