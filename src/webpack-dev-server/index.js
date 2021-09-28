@@ -41,15 +41,15 @@ function runWebpackDevServer(config, context, options = {}) {
     const createWebpack = (c) => {
         if (options.webpackFactory) {
             const result = options.webpackFactory(c);
-            if (rxjs_1.isObservable(result)) {
+            if ((0, rxjs_1.isObservable)(result)) {
                 return result;
             }
             else {
-                return rxjs_1.of(result);
+                return (0, rxjs_1.of)(result);
             }
         }
         else {
-            return rxjs_1.of(webpack_1.default(c));
+            return (0, rxjs_1.of)((0, webpack_1.default)(c));
         }
     };
     const createWebpackDevServer = (webpack, config) => {
@@ -59,7 +59,7 @@ function runWebpackDevServer(config, context, options = {}) {
         return new webpack_dev_server_1.default(config, webpack);
     };
     const log = options.logging || ((stats, config) => context.logger.info(stats.toString(config.stats)));
-    return createWebpack({ ...config, watch: false }).pipe(operators_1.switchMap((webpackCompiler) => new rxjs_1.Observable((obs) => {
+    return createWebpack({ ...config, watch: false }).pipe((0, operators_1.switchMap)((webpackCompiler) => new rxjs_1.Observable((obs) => {
         var _a;
         const devServerConfig = options.devServerConfig || config.devServer || {};
         (_a = devServerConfig.host) !== null && _a !== void 0 ? _a : (devServerConfig.host = 'localhost');
@@ -69,7 +69,7 @@ function runWebpackDevServer(config, context, options = {}) {
             log(stats, config);
             obs.next({
                 ...result,
-                emittedFiles: utils_1.getEmittedFiles(stats.compilation),
+                emittedFiles: (0, utils_1.getEmittedFiles)(stats.compilation),
                 success: !stats.hasErrors(),
                 outputPath: stats.compilation.outputOptions.path,
             });
@@ -96,7 +96,7 @@ function runWebpackDevServer(config, context, options = {}) {
     })));
 }
 exports.runWebpackDevServer = runWebpackDevServer;
-exports.default = architect_1.createBuilder((options, context) => {
-    const configPath = path_1.resolve(context.workspaceRoot, options.webpackConfig);
-    return rxjs_1.from(Promise.resolve().then(() => __importStar(require(configPath)))).pipe(operators_1.switchMap(({ default: config }) => runWebpackDevServer(config, context)));
+exports.default = (0, architect_1.createBuilder)((options, context) => {
+    const configPath = (0, path_1.resolve)(context.workspaceRoot, options.webpackConfig);
+    return (0, rxjs_1.from)(Promise.resolve().then(() => __importStar(require(configPath)))).pipe((0, operators_1.switchMap)(({ default: config }) => runWebpackDevServer(config, context)));
 });
