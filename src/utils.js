@@ -29,14 +29,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getEmittedFiles = void 0;
 const path = __importStar(require("path"));
 function getEmittedFiles(compilation) {
+    var _a;
     const files = [];
+    const chunkFileNames = new Set();
     // adds all chunks to the list of emitted files such as lazy loaded modules
     for (const chunk of compilation.chunks) {
         for (const file of chunk.files) {
+            if (chunkFileNames.has(file)) {
+                continue;
+            }
+            chunkFileNames.add(file);
             files.push({
-                // The id is guaranteed to exist at this point in the compilation process
-                // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-                id: chunk.id.toString(),
+                id: (_a = chunk.id) === null || _a === void 0 ? void 0 : _a.toString(),
                 name: chunk.name,
                 file,
                 extension: path.extname(file),
@@ -44,11 +48,14 @@ function getEmittedFiles(compilation) {
             });
         }
     }
-    // other all files
+    // add all other files
     for (const file of Object.keys(compilation.assets)) {
+        // Chunk files have already been added to the files list above
+        if (chunkFileNames.has(file)) {
+            continue;
+        }
         files.push({ file, extension: path.extname(file), initial: false, asset: true });
     }
-    // dedupe
-    return files.filter(({ file, name }, index) => files.findIndex((f) => f.file === file && (!name || name === f.name)) === index);
+    return files;
 }
 exports.getEmittedFiles = getEmittedFiles;
