@@ -26,10 +26,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWebpackConfig = exports.getEmittedFiles = void 0;
-const fs_1 = require("fs");
+exports.getEmittedFiles = void 0;
 const path = __importStar(require("path"));
-const url_1 = require("url");
 function getEmittedFiles(compilation) {
     var _a;
     const files = [];
@@ -61,49 +59,4 @@ function getEmittedFiles(compilation) {
     return files;
 }
 exports.getEmittedFiles = getEmittedFiles;
-/**
- * This uses a dynamic import to load a module which may be ESM.
- * CommonJS code can load ESM code via a dynamic import. Unfortunately, TypeScript
- * will currently, unconditionally downlevel dynamic import into a require call.
- * require calls cannot load ESM code and will result in a runtime error. To workaround
- * this, a Function constructor is used to prevent TypeScript from changing the dynamic import.
- * Once TypeScript provides support for keeping the dynamic import this workaround can
- * be dropped.
- *
- * @param modulePath The path of the module to load.
- * @returns A Promise that resolves to the dynamically imported module.
- */
-function loadEsmModule(modulePath) {
-    return new Function('modulePath', `return import(modulePath);`)(modulePath);
-}
-async function getWebpackConfig(configPath) {
-    if (!(0, fs_1.existsSync)(configPath)) {
-        throw new Error(`Webpack configuration file ${configPath} does not exist.`);
-    }
-    switch (path.extname(configPath)) {
-        case '.mjs':
-            // Load the ESM configuration file using the TypeScript dynamic import workaround.
-            // Once TypeScript provides support for keeping the dynamic import this workaround can be
-            // changed to a direct dynamic import.
-            return (await loadEsmModule((0, url_1.pathToFileURL)(configPath))).default;
-        case '.cjs':
-            return require(configPath);
-        default:
-            // The file could be either CommonJS or ESM.
-            // CommonJS is tried first then ESM if loading fails.
-            try {
-                return require(configPath);
-            }
-            catch (e) {
-                if (e.code === 'ERR_REQUIRE_ESM') {
-                    // Load the ESM configuration file using the TypeScript dynamic import workaround.
-                    // Once TypeScript provides support for keeping the dynamic import this workaround can be
-                    // changed to a direct dynamic import.
-                    return (await loadEsmModule((0, url_1.pathToFileURL)(configPath)))
-                        .default;
-                }
-                throw e;
-            }
-    }
-}
-exports.getWebpackConfig = getWebpackConfig;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidXRpbHMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi8uLi9wYWNrYWdlcy9hbmd1bGFyX2RldmtpdC9idWlsZF93ZWJwYWNrL3NyYy91dGlscy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUE7Ozs7OztHQU1HOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBRUgsMkNBQTZCO0FBVzdCLFNBQWdCLGVBQWUsQ0FBQyxXQUEwQzs7SUFDeEUsTUFBTSxLQUFLLEdBQW1CLEVBQUUsQ0FBQztJQUNqQyxNQUFNLGNBQWMsR0FBRyxJQUFJLEdBQUcsRUFBVSxDQUFDO0lBRXpDLDJFQUEyRTtJQUMzRSxLQUFLLE1BQU0sS0FBSyxJQUFJLFdBQVcsQ0FBQyxNQUFNLEVBQUU7UUFDdEMsS0FBSyxNQUFNLElBQUksSUFBSSxLQUFLLENBQUMsS0FBSyxFQUFFO1lBQzlCLElBQUksY0FBYyxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsRUFBRTtnQkFDNUIsU0FBUzthQUNWO1lBRUQsY0FBYyxDQUFDLEdBQUcsQ0FBQyxJQUFJLENBQUMsQ0FBQztZQUN6QixLQUFLLENBQUMsSUFBSSxDQUFDO2dCQUNULEVBQUUsRUFBRSxNQUFBLEtBQUssQ0FBQyxFQUFFLDBDQUFFLFFBQVEsRUFBRTtnQkFDeEIsSUFBSSxFQUFFLEtBQUssQ0FBQyxJQUFJO2dCQUNoQixJQUFJO2dCQUNKLFNBQVMsRUFBRSxJQUFJLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQztnQkFDN0IsT0FBTyxFQUFFLEtBQUssQ0FBQyxhQUFhLEVBQUU7YUFDL0IsQ0FBQyxDQUFDO1NBQ0o7S0FDRjtJQUVELHNCQUFzQjtJQUN0QixLQUFLLE1BQU0sSUFBSSxJQUFJLE1BQU0sQ0FBQyxJQUFJLENBQUMsV0FBVyxDQUFDLE1BQU0sQ0FBQyxFQUFFO1FBQ2xELDhEQUE4RDtRQUM5RCxJQUFJLGNBQWMsQ0FBQyxHQUFHLENBQUMsSUFBSSxDQUFDLEVBQUU7WUFDNUIsU0FBUztTQUNWO1FBRUQsS0FBSyxDQUFDLElBQUksQ0FBQyxFQUFFLElBQUksRUFBRSxTQUFTLEVBQUUsSUFBSSxDQUFDLE9BQU8sQ0FBQyxJQUFJLENBQUMsRUFBRSxPQUFPLEVBQUUsS0FBSyxFQUFFLEtBQUssRUFBRSxJQUFJLEVBQUUsQ0FBQyxDQUFDO0tBQ2xGO0lBRUQsT0FBTyxLQUFLLENBQUM7QUFDZixDQUFDO0FBakNELDBDQWlDQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDIEFsbCBSaWdodHMgUmVzZXJ2ZWQuXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG5pbXBvcnQgKiBhcyBwYXRoIGZyb20gJ3BhdGgnO1xuXG5leHBvcnQgaW50ZXJmYWNlIEVtaXR0ZWRGaWxlcyB7XG4gIGlkPzogc3RyaW5nO1xuICBuYW1lPzogc3RyaW5nO1xuICBmaWxlOiBzdHJpbmc7XG4gIGluaXRpYWw6IGJvb2xlYW47XG4gIGFzc2V0PzogYm9vbGVhbjtcbiAgZXh0ZW5zaW9uOiBzdHJpbmc7XG59XG5cbmV4cG9ydCBmdW5jdGlvbiBnZXRFbWl0dGVkRmlsZXMoY29tcGlsYXRpb246IGltcG9ydCgnd2VicGFjaycpLkNvbXBpbGF0aW9uKTogRW1pdHRlZEZpbGVzW10ge1xuICBjb25zdCBmaWxlczogRW1pdHRlZEZpbGVzW10gPSBbXTtcbiAgY29uc3QgY2h1bmtGaWxlTmFtZXMgPSBuZXcgU2V0PHN0cmluZz4oKTtcblxuICAvLyBhZGRzIGFsbCBjaHVua3MgdG8gdGhlIGxpc3Qgb2YgZW1pdHRlZCBmaWxlcyBzdWNoIGFzIGxhenkgbG9hZGVkIG1vZHVsZXNcbiAgZm9yIChjb25zdCBjaHVuayBvZiBjb21waWxhdGlvbi5jaHVua3MpIHtcbiAgICBmb3IgKGNvbnN0IGZpbGUgb2YgY2h1bmsuZmlsZXMpIHtcbiAgICAgIGlmIChjaHVua0ZpbGVOYW1lcy5oYXMoZmlsZSkpIHtcbiAgICAgICAgY29udGludWU7XG4gICAgICB9XG5cbiAgICAgIGNodW5rRmlsZU5hbWVzLmFkZChmaWxlKTtcbiAgICAgIGZpbGVzLnB1c2goe1xuICAgICAgICBpZDogY2h1bmsuaWQ/LnRvU3RyaW5nKCksXG4gICAgICAgIG5hbWU6IGNodW5rLm5hbWUsXG4gICAgICAgIGZpbGUsXG4gICAgICAgIGV4dGVuc2lvbjogcGF0aC5leHRuYW1lKGZpbGUpLFxuICAgICAgICBpbml0aWFsOiBjaHVuay5pc09ubHlJbml0aWFsKCksXG4gICAgICB9KTtcbiAgICB9XG4gIH1cblxuICAvLyBhZGQgYWxsIG90aGVyIGZpbGVzXG4gIGZvciAoY29uc3QgZmlsZSBvZiBPYmplY3Qua2V5cyhjb21waWxhdGlvbi5hc3NldHMpKSB7XG4gICAgLy8gQ2h1bmsgZmlsZXMgaGF2ZSBhbHJlYWR5IGJlZW4gYWRkZWQgdG8gdGhlIGZpbGVzIGxpc3QgYWJvdmVcbiAgICBpZiAoY2h1bmtGaWxlTmFtZXMuaGFzKGZpbGUpKSB7XG4gICAgICBjb250aW51ZTtcbiAgICB9XG5cbiAgICBmaWxlcy5wdXNoKHsgZmlsZSwgZXh0ZW5zaW9uOiBwYXRoLmV4dG5hbWUoZmlsZSksIGluaXRpYWw6IGZhbHNlLCBhc3NldDogdHJ1ZSB9KTtcbiAgfVxuXG4gIHJldHVybiBmaWxlcztcbn1cbiJdfQ==
