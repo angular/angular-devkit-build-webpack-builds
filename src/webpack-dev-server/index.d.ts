@@ -18,6 +18,7 @@ export declare type DevServerBuildOutput = BuildResult & {
     address: string;
 };
 export declare function runWebpackDevServer(config: webpack.Configuration, context: BuilderContext, options?: {
+    shouldProvideStats?: boolean;
     devServerConfig?: WebpackDevServer.Configuration;
     logging?: WebpackLoggingCallback;
     webpackFactory?: WebpackFactory;
