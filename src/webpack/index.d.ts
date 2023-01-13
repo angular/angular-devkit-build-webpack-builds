@@ -10,14 +10,14 @@ import { Observable } from 'rxjs';
 import webpack from 'webpack';
 import { EmittedFiles } from '../utils';
 import { Schema as RealWebpackBuilderSchema } from './schema';
-export declare type WebpackBuilderSchema = RealWebpackBuilderSchema;
+export type WebpackBuilderSchema = RealWebpackBuilderSchema;
 export interface WebpackLoggingCallback {
     (stats: webpack.Stats, config: webpack.Configuration): void;
 }
 export interface WebpackFactory {
     (config: webpack.Configuration): Observable<webpack.Compiler> | webpack.Compiler;
 }
-export declare type BuildResult = BuilderOutput & {
+export type BuildResult = BuilderOutput & {
     emittedFiles?: EmittedFiles[];
     webpackStats?: webpack.StatsCompilation;
     outputPath: string;

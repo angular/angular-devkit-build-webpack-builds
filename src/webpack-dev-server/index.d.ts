@@ -11,8 +11,8 @@ import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
 import { BuildResult, WebpackFactory, WebpackLoggingCallback } from '../webpack';
 import { Schema as WebpackDevServerBuilderSchema } from './schema';
-export declare type WebpackDevServerFactory = typeof WebpackDevServer;
-export declare type DevServerBuildOutput = BuildResult & {
+export type WebpackDevServerFactory = typeof WebpackDevServer;
+export type DevServerBuildOutput = BuildResult & {
     port: number;
     family: string;
     address: string;
