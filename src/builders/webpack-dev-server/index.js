@@ -16,7 +16,7 @@ const path_1 = require("path");
 const rxjs_1 = require("rxjs");
 const webpack_1 = __importDefault(require("webpack"));
 const webpack_dev_server_1 = __importDefault(require("webpack-dev-server"));
-const utils_1 = require("../utils");
+const utils_1 = require("../../utils");
 function runWebpackDevServer(config, context, options = {}) {
     const createWebpack = (c) => {
         if (options.webpackFactory) {

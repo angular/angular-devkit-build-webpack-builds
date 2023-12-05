@@ -8,7 +8,7 @@
 import { BuilderContext, BuilderOutput } from '@angular-devkit/architect';
 import { Observable } from 'rxjs';
 import webpack from 'webpack';
-import { EmittedFiles } from '../utils';
+import { EmittedFiles } from '../../utils';
 import { Schema as RealWebpackBuilderSchema } from './schema';
 export type WebpackBuilderSchema = RealWebpackBuilderSchema;
 export interface WebpackLoggingCallback {
@@ -27,5 +27,5 @@ export declare function runWebpack(config: webpack.Configuration, context: Build
     webpackFactory?: WebpackFactory;
     shouldProvideStats?: boolean;
 }): Observable<BuildResult>;
-declare const _default: import("../../../architect/src/internal").Builder<RealWebpackBuilderSchema & import("../../../core/src").JsonObject>;
+declare const _default: import("../../../../architect/src/internal").Builder<RealWebpackBuilderSchema & import("../../../../core/src").JsonObject>;
 export default _default;
