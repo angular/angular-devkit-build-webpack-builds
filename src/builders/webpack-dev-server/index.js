@@ -38,12 +38,8 @@ function runWebpackDevServer(config, context, options = {}) {
         }
         return new webpack_dev_server_1.default(config, webpack);
     };
-    const { logging: log = (stats, config) => {
-        if (config.stats !== false) {
-            const statsOptions = config.stats === true ? undefined : config.stats;
-            context.logger.info(stats.toString(statsOptions));
-        }
-    }, shouldProvideStats = true, } = options;
+    const log = options.logging || ((stats, config) => context.logger.info(stats.toString(config.stats)));
+    const shouldProvideStats = options.shouldProvideStats ?? true;
     return createWebpack({ ...config, watch: false }).pipe((0, rxjs_1.switchMap)((webpackCompiler) => new rxjs_1.Observable((obs) => {
         const devServerConfig = options.devServerConfig || config.devServer || {};
         devServerConfig.host ??= 'localhost';
