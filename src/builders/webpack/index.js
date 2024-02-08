@@ -17,7 +17,12 @@ const rxjs_1 = require("rxjs");
 const webpack_1 = __importDefault(require("webpack"));
 const utils_1 = require("../../utils");
 function runWebpack(config, context, options = {}) {
-    const { logging: log = (stats, config) => context.logger.info(stats.toString(config.stats)), shouldProvideStats = true, } = options;
+    const { logging: log = (stats, config) => {
+        if (config.stats !== false) {
+            const statsOptions = config.stats === true ? undefined : config.stats;
+            context.logger.info(stats.toString(statsOptions));
+        }
+    }, shouldProvideStats = true, } = options;
     const createWebpack = (c) => {
         if (options.webpackFactory) {
             const result = options.webpackFactory(c);
