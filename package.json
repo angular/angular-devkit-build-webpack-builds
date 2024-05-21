@@ -1,6 +1,6 @@
 {
   "name": "@angular-devkit/build-webpack",
-  "version": "0.1801.0-next.0+sha-ebfd7b1",
+  "version": "0.1801.0-next.0+sha-ec9b65e",
   "description": "Webpack Builder for Architect",
   "experimental": true,
   "main": "src/index.js",
@@ -16,7 +16,7 @@
     "./*.js": "./*.js"
   },
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#ebfd7b1",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#ec9b65e",
     "rxjs": "7.8.1"
   },
   "peerDependencies": {
