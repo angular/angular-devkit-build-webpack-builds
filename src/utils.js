@@ -30,7 +30,8 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getWebpackConfig = exports.getEmittedFiles = void 0;
+exports.getEmittedFiles = getEmittedFiles;
+exports.getWebpackConfig = getWebpackConfig;
 const fs_1 = require("fs");
 const path = __importStar(require("path"));
 const url_1 = require("url");
@@ -63,7 +64,6 @@ function getEmittedFiles(compilation) {
     }
     return files;
 }
-exports.getEmittedFiles = getEmittedFiles;
 /**
  * This uses a dynamic import to load a module which may be ESM.
  * CommonJS code can load ESM code via a dynamic import. Unfortunately, TypeScript
@@ -109,4 +109,3 @@ async function getWebpackConfig(configPath) {
             }
     }
 }
-exports.getWebpackConfig = getWebpackConfig;
