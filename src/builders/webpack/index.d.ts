@@ -27,5 +27,5 @@ export declare function runWebpack(config: webpack.Configuration, context: Build
     webpackFactory?: WebpackFactory;
     shouldProvideStats?: boolean;
 }): Observable<BuildResult>;
-declare const _default: import("../../../../architect/src/internal").Builder<RealWebpackBuilderSchema & import("../../../../core/src").JsonObject>;
+declare const _default: import("../../../../architect/src/internal").Builder<RealWebpackBuilderSchema & import("../../../../core").JsonObject>;
 export default _default;
