@@ -24,5 +24,5 @@ export declare function runWebpackDevServer(config: webpack.Configuration, conte
     webpackFactory?: WebpackFactory;
     webpackDevServerFactory?: WebpackDevServerFactory;
 }): Observable<DevServerBuildOutput>;
-declare const _default: import("../../../../architect/src/internal").Builder<WebpackDevServerBuilderSchema & import("../../../../core/src").JsonObject>;
+declare const _default: import("../../../../architect/src/internal").Builder<WebpackDevServerBuilderSchema & import("../../../../core").JsonObject>;
 export default _default;
