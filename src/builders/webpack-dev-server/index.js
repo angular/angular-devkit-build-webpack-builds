@@ -85,7 +85,8 @@ function runWebpackDevServer(config, context, options = {}) {
         };
     })));
 }
-exports.default = (0, architect_1.createBuilder)((options, context) => {
+const builder = (0, architect_1.createBuilder)((options, context) => {
     const configPath = (0, path_1.resolve)(context.workspaceRoot, options.webpackConfig);
     return (0, rxjs_1.from)((0, utils_1.getWebpackConfig)(configPath)).pipe((0, rxjs_1.switchMap)((config) => runWebpackDevServer(config, context)));
 });
+exports.default = builder;
