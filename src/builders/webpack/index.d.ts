@@ -5,7 +5,8 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.dev/license
  */
-import { BuilderContext, BuilderOutput } from '@angular-devkit/architect';
+import { Builder, BuilderContext, BuilderOutput } from '@angular-devkit/architect';
+import { json } from '@angular-devkit/core';
 import { Observable } from 'rxjs';
 import webpack from 'webpack';
 import { EmittedFiles } from '../../utils';
@@ -27,5 +28,5 @@ export declare function runWebpack(config: webpack.Configuration, context: Build
     webpackFactory?: WebpackFactory;
     shouldProvideStats?: boolean;
 }): Observable<BuildResult>;
-declare const _default: import("../../../../architect/src/internal").Builder<RealWebpackBuilderSchema & import("../../../../core").JsonObject>;
-export default _default;
+declare const builder: Builder<WebpackBuilderSchema & json.JsonObject>;
+export default builder;
