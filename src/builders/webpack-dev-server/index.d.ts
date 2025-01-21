@@ -6,7 +6,6 @@
  * found in the LICENSE file at https://angular.dev/license
  */
 import { Builder, BuilderContext } from '@angular-devkit/architect';
-import { json } from '@angular-devkit/core';
 import { Observable } from 'rxjs';
 import webpack from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
@@ -25,5 +24,5 @@ export declare function runWebpackDevServer(config: webpack.Configuration, conte
     webpackFactory?: WebpackFactory;
     webpackDevServerFactory?: WebpackDevServerFactory;
 }): Observable<DevServerBuildOutput>;
-declare const builder: Builder<WebpackDevServerBuilderSchema & json.JsonObject>;
+declare const builder: Builder<WebpackDevServerBuilderSchema>;
 export default builder;
