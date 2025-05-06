@@ -1,6 +1,6 @@
 {
   "name": "@angular-devkit/build-webpack",
-  "version": "0.1902.10+sha-009fc37",
+  "version": "0.1902.10+sha-cba66a8",
   "description": "Webpack Builder for Architect",
   "experimental": true,
   "main": "src/index.js",
