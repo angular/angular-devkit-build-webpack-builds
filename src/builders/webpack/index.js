@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.runWebpack = runWebpack;
 const architect_1 = require("@angular-devkit/architect");
+const node_assert_1 = __importDefault(require("node:assert"));
 const node_path_1 = require("node:path");
 const rxjs_1 = require("rxjs");
 const webpack_1 = __importDefault(require("webpack"));
@@ -38,6 +39,7 @@ function runWebpack(config, context, options = {}) {
         }
     };
     return createWebpack({ ...config, watch: false }).pipe((0, rxjs_1.switchMap)((webpackCompiler) => new rxjs_1.Observable((obs) => {
+        (0, node_assert_1.default)(webpackCompiler, 'Webpack compiler factory did not return a compiler instance.');
         const callback = (err, stats) => {
             if (err) {
                 return obs.error(err);
