@@ -1,6 +1,6 @@
 {
   "name": "@angular-devkit/build-webpack",
-  "version": "0.2003.0-next.0+sha-ef20a27",
+  "version": "0.2003.0+sha-db1c025",
   "description": "Webpack Builder for Architect",
   "experimental": true,
   "main": "src/index.js",
@@ -16,7 +16,7 @@
     "./*.js": "./*.js"
   },
   "dependencies": {
-    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#ef20a27",
+    "@angular-devkit/architect": "github:angular/angular-devkit-architect-builds#db1c025",
     "rxjs": "7.8.2"
   },
   "peerDependencies": {
@@ -45,6 +45,5 @@
   "bugs": {
     "url": "https://github.com/angular/angular-cli/issues"
   },
-  "homepage": "https://github.com/angular/angular-cli",
-  "__ngDevExceptionalMinor__": true
+  "homepage": "https://github.com/angular/angular-cli"
 }
