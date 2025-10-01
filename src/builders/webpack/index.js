@@ -72,7 +72,7 @@ function runWebpack(config, context, options = {}) {
                 const watching = webpackCompiler.watch(watchOptions, callback);
                 // Teardown logic. Close the watcher when unsubscribed from.
                 return () => {
-                    watching.close(() => { });
+                    watching?.close(() => { });
                     webpackCompiler.close(() => { });
                 };
             }
