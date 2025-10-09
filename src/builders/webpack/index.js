@@ -93,3 +93,4 @@ const builder = (0, architect_1.createBuilder)((options, context) => {
     return (0, rxjs_1.from)((0, utils_1.getWebpackConfig)(configPath)).pipe((0, rxjs_1.switchMap)((config) => runWebpack(config, context)));
 });
 exports.default = builder;
+//# sourceMappingURL=index.js.map
