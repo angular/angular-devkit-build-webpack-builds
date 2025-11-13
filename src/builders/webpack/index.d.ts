@@ -7,7 +7,7 @@
  */
 import { Builder, BuilderContext, BuilderOutput } from '@angular-devkit/architect';
 import { Observable } from 'rxjs';
-import webpack from 'webpack';
+import type webpack from 'webpack';
 import { EmittedFiles } from '../../utils';
 import { Schema as RealWebpackBuilderSchema } from './schema';
 export type WebpackBuilderSchema = RealWebpackBuilderSchema;
