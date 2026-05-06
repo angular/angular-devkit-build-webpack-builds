@@ -22,6 +22,10 @@ export type BuildResult = BuilderOutput & {
     webpackStats?: webpack.StatsCompilation;
     outputPath: string;
 };
+/**
+ * @deprecated Part of Angular's Webpack support deprecation. Use `@angular/build` APIs instead.
+ * Deprecated since v22.
+ */
 export declare function runWebpack(config: webpack.Configuration, context: BuilderContext, options?: {
     logging?: WebpackLoggingCallback;
     webpackFactory?: WebpackFactory;

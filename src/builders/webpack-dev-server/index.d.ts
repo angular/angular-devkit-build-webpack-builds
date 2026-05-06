@@ -17,6 +17,10 @@ export type DevServerBuildOutput = BuildResult & {
     family: string;
     address: string;
 };
+/**
+ * @deprecated Part of Angular's Webpack support deprecation. Use `@angular/build` APIs instead.
+ * Deprecated since v22.
+ */
 export declare function runWebpackDevServer(config: webpack.Configuration, context: BuilderContext, options?: {
     shouldProvideStats?: boolean;
     devServerConfig?: WebpackDevServer.Configuration;

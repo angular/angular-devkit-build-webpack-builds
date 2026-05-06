@@ -49,6 +49,10 @@ const node_assert_1 = __importDefault(require("node:assert"));
 const node_path_1 = require("node:path");
 const rxjs_1 = require("rxjs");
 const utils_1 = require("../../utils");
+/**
+ * @deprecated Part of Angular's Webpack support deprecation. Use `@angular/build` APIs instead.
+ * Deprecated since v22.
+ */
 function runWebpackDevServer(config, context, options = {}) {
     const createWebpack = (c) => {
         if (options.webpackFactory) {
@@ -126,6 +130,8 @@ function runWebpackDevServer(config, context, options = {}) {
     })));
 }
 const builder = (0, architect_1.createBuilder)((options, context) => {
+    context.logger.warn('The "@angular-devkit/build-webpack:webpack-dev-server" builder is deprecated as part of Angular\'s Webpack support deprecation. ' +
+        'Use "@angular/build" instead.');
     const configPath = (0, node_path_1.resolve)(context.workspaceRoot, options.webpackConfig);
     return (0, rxjs_1.from)((0, utils_1.getWebpackConfig)(configPath)).pipe((0, rxjs_1.switchMap)((config) => runWebpackDevServer(config, context)));
 });
