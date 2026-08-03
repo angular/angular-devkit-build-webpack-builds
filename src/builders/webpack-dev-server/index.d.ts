@@ -9,6 +9,7 @@ import { Builder, BuilderContext } from '@angular-devkit/architect';
 import { Observable } from 'rxjs';
 import type webpack from 'webpack';
 import type WebpackDevServer from 'webpack-dev-server';
+import type { Configuration } from 'webpack-dev-server';
 import { BuildResult, WebpackFactory, WebpackLoggingCallback } from '../webpack';
 import { Schema as WebpackDevServerBuilderSchema } from './schema';
 export type WebpackDevServerFactory = typeof WebpackDevServer;
@@ -23,7 +24,7 @@ export type DevServerBuildOutput = BuildResult & {
  */
 export declare function runWebpackDevServer(config: webpack.Configuration, context: BuilderContext, options?: {
     shouldProvideStats?: boolean;
-    devServerConfig?: WebpackDevServer.Configuration;
+    devServerConfig?: Configuration;
     logging?: WebpackLoggingCallback;
     webpackFactory?: WebpackFactory;
     webpackDevServerFactory?: WebpackDevServerFactory;

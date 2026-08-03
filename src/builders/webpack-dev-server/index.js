@@ -68,14 +68,6 @@ function runWebpackDevServer(config, context, options = {}) {
             return (0, rxjs_1.from)(Promise.resolve().then(() => __importStar(require('webpack'))).then((mod) => mod.default(c)));
         }
     };
-    const createWebpackDevServer = (webpack, config) => {
-        if (options.webpackDevServerFactory) {
-            return new options.webpackDevServerFactory(config, webpack);
-        }
-        else {
-            return (0, rxjs_1.from)(Promise.resolve().then(() => __importStar(require('webpack-dev-server'))).then((mod) => new mod.default(config, webpack)));
-        }
-    };
     const { logging: log = (stats, config) => {
         if (config.stats !== false) {
             const statsOptions = config.stats === true ? undefined : config.stats;
